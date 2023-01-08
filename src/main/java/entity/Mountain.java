@@ -28,9 +28,11 @@ public class Mountain {
     private int altitude;
 
     @OneToMany (mappedBy = "mountain")
-    private List<ClimbingGroup> climbingGroups = new ArrayList<>();
+    private List<ClimbingGroup> climbingGroups;
 
-    public Mountain(){}
+    public Mountain(){
+        climbingGroups = new ArrayList<>();
+    }
     public Mountain(String name, String country, int altitude) {
         if (country==null || name == null || name.length() < 4 || country.length() < 4 || altitude < 100 )
             throw new IllegalArgumentException("Неверные данные");
