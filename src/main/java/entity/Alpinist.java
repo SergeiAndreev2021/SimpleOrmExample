@@ -3,6 +3,8 @@ package entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -23,12 +25,13 @@ public class Alpinist {
     @Column  ( name = "alpinist_age",nullable = false)
     int age;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "climbing_group_id")
-    private ClimbingGroup climbingGroup;
+    @ManyToMany( mappedBy ="alplist")
+    private List<ClimbingGroup> climbingGroups;
 
 
-   public Alpinist(){}
+   public Alpinist(){
+       climbingGroups = new ArrayList<>();
+   }
    public Alpinist(String name, String address, int age){
         if ( name == null || address == null ||name.length() < 3 || address.length() < 5 || age <16)
             throw new IllegalArgumentException("Ошибка данных");

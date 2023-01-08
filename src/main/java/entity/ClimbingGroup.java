@@ -16,12 +16,13 @@ public class ClimbingGroup {
 
     private boolean complectationIsOn = true;
 
-    // В одну группу входит несколько альпинистов
-    @OneToMany (mappedBy = "climbingGroup",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    // В одну группу входит несколько альпинистов ,  но альпинисты могут входить в несколько групп
+    @ManyToMany ( cascade = CascadeType.PERSIST)
     private List <Alpinist> alplist;
-   //  одна группа восходит на одну гору
-    @OneToOne(cascade = CascadeType.PERSIST)
+   //  одна группа восходит на одну гору, но могут одновременно зайти несколько групп
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Mountain mountain;
+
     private LocalDateTime climbTime;
 
     public ClimbingGroup(){

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -25,8 +27,8 @@ public class Mountain {
     @Column( name = "mountain_altitude", nullable = false)
     private int altitude;
 
-    @OneToOne (mappedBy = "mountain")
-    private ClimbingGroup climbingGroup;
+    @OneToMany (mappedBy = "mountain")
+    private List<ClimbingGroup> climbingGroups = new ArrayList<>();
 
     public Mountain(){}
     public Mountain(String name, String country, int altitude) {
